@@ -5,3 +5,4 @@ flask-jwt-extended
 python-dotenv
 Flask-Cors
 dnspython
+gunicorn
