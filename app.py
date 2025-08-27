@@ -129,7 +129,7 @@ def update_user_code(email, slug):
     return "success", 200
 
 @app.get("/api/users/<email>/courses/<slug>/lessons/<id>/code")
-def update_user_code(email, slug, id):
+def get_user_code(email, slug, id):
     db = client['BizLearn']
     collection = db['users']
     
