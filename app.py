@@ -128,6 +128,21 @@ def update_user_code(email, slug):
     
     return "success", 200
 
+@app.get("/api/users/<email>/courses/<slug>/lessons/<id>/code")
+def update_user_code(email, slug, id):
+    db = client['BizLearn']
+    collection = db['users']
+    
+    doc = collection.find_one(
+        {"email": email, "courses_enrolled.slug": slug, "courses_enrolled.lessons.id": id},
+    )
+
+    if not doc:
+        return jsonify({"error": "Not found"})
+    doc["_id"] = str(doc["_id"])
+    
+    return doc, 200
+
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))  # Render gives PORT
